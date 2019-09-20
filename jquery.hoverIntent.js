@@ -31,11 +31,15 @@
  */
 
 (function(factory) {
-    'use strict';
-    if (typeof define === 'function' && define.amd) {
-        define(['jquery'], factory);
-    } else if (jQuery && !jQuery.fn.hoverIntent) {
-        factory(jQuery);
+    if (typeof define === 'function' && define.amd && define.amd.jQuery) {
+      // AMD. Register as anonymous module.
+      define(['jquery'], factory);
+    } else if (typeof module !== 'undefined' && module.exports) {
+      // CommonJS Module
+      factory(require("jquery"));
+    } else {
+      // Browser globals.
+      factory(jQuery);
     }
 })(function($) {
     'use strict';
